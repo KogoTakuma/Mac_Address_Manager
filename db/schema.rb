@@ -13,21 +13,20 @@
 ActiveRecord::Schema.define(version: 2023_05_17_025115) do
 
   create_table "electronics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "electronics_name", null: false
     t.string "mac_address", null: false
     t.boolean "is_wireless", null: false
-    t.bigint "user_id", null: false
-    t.string "electronics_uuid", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_electronics_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "user_name", null: false
     t.string "belongs", null: false
     t.boolean "is_special", null: false
-    t.date "expiration", null: false
+    t.boolean "is_payment", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
