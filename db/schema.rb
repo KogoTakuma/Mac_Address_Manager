@@ -24,6 +24,10 @@ ActiveRecord::Schema.define(version: 2023_05_17_025115) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "belongs", null: false
+    t.boolean "is_special", null: false
+    t.date "expiration", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
