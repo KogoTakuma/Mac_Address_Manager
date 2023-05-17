@@ -38,4 +38,55 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Electronic' do
+
+    edit do
+      field :electronics_name
+      field :mac_address
+      field :is_wireless
+      field :user do
+        pretty_value do value.try(:user_name) end
+      end
+    end
+    show do
+      field :electronics_name
+      field :mac_address
+      field :is_wireless
+      field :user do
+        pretty_value do value.try(:user_name) end
+      end
+    end
+
+
+
+  end
+
+  config.model 'User' do
+    #show do
+    #  field :belongs
+    #  field :user_name
+    #  field :is_special
+    #  field :is_payment
+    #end
+#
+    #edit do
+    #  field :belongs
+    #  field :user_name
+    #  field :is_special
+    #  field :is_payment
+    #end
+
+  
+    #index do
+    #  field :electronics_name
+    #  field :mac_address
+    #  field :is_wireless
+    #  field :user do
+    #    pretty_value do value.try(:user_name) end
+    #  end
+    #end    
+
+  end
+
 end
