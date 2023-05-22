@@ -79,12 +79,11 @@ RailsAdmin.config do |config|
 
   
     #index do
-    #  field :electronics_name
-    #  field :mac_address
-    #  field :is_wireless
-    #  field :user do
-    #    pretty_value do value.try(:user_name) end
-    #  end
+    field :user_name
+    field :belongs
+    field :is_payment
+    field :is_special
+    field :pre_payment
     #end    
 
   end

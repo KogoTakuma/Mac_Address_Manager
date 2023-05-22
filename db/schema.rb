@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_17_055057) do
+ActiveRecord::Schema.define(version: 2023_05_20_123043) do
 
   create_table "electronics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "electronics_name", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2023_05_17_055057) do
     t.boolean "is_payment", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "pre_payment", default: false
   end
 
   add_foreign_key "electronics", "users", primary_key: "user_name"
