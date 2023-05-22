@@ -8,7 +8,7 @@ class CommandController < ApplicationController
 
   private
   def generate_command()
-    valid_users = User.where(is_payment: true)
+    valid_users = User.where("is_payment IN (?) OR is_special IN (?) OR pre_payment IN (?)", true, true, true)
     valid_users_mac_address = Electronic.where(user_id: valid_users.pluck(:user_name))
     result = valid_users_mac_address.pluck(:mac_address).map(&:to_s)
     count = 0
