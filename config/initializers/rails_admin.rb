@@ -57,12 +57,19 @@ RailsAdmin.config do |config|
         pretty_value do value.try(:user_name) end
       end
     end
+    import do
+      include_all_fields
+    end
 
 
 
   end
 
   config.model 'User' do
+
+    import do 
+      include_all_fields
+    end
     #show do
     #  field :belongs
     #  field :user_name
