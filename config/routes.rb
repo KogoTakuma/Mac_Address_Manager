@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   post '/electronic/import', to: 'electronics#import'
   get '/user/pre_import', to: 'users#pre_import'
   get '/electronic/pre_import', to: 'electronics#pre_import'
+  root to: 'homes#index'
+
 end
