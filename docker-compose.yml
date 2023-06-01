@@ -12,10 +12,13 @@ services:
     tty: true
     stdin_open: true
   db:
+    platform: linux/x86_64
     image: mysql:5.7
     volumes:
       - db-volume:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
+    #エラー発生をoff　以下を追加
+    command: mysqld --innodb_use_native_aio=0
 volumes:
   db-volume:
