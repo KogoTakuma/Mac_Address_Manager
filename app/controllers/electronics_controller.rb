@@ -6,8 +6,12 @@ class ElectronicsController < ApplicationController
   end
 
   def import 
-    @electronic  = Electronic.all
-    @electronic.import(params[:file])  
+    CSV.foreach(params[:file].path, headers: true) do |row| #受け取ったCSVファイルを行ごとに取り出す、その時1行目headerには項目が書いてあるので、1行目は無視する
+      user = User.find(row.to_hash.slice("user_name")["user_name"])
+      electronic = user.electronics.new
+      electronic.attributes = row.to_hash.slice(*["electronics_name", "mac_address", "is_wireless"])
+      electronic.save!
+    end
     redirect_to rails_admin_path, notice: "タスクを追加しました"
   end
 

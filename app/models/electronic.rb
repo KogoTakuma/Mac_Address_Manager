@@ -1,10 +1,13 @@
 class Electronic < ApplicationRecord
-    belongs_to :electronic, foreign_key: true
+    belongs_to :user, primary_key: :user_name, foreign_key: :owner_name
     #primary_key: :electronic_name
     #validates :id, presence: true
 
     def self.csv_attributes
-        ["user_id","electronics_name", "mac_address", "is_wireless"]
+        ["user_name","electronics_name", "mac_address", "is_wireless"]
+    end
+    def self.csv_attributes2
+        ["electronics_name", "mac_address", "is_wireless"]
     end
     
     #CSV形式でインスタンスの中身を出力できるようにする
@@ -19,16 +22,13 @@ class Electronic < ApplicationRecord
           end
         end
     end
-    def self.import(file)
-        CSV.foreach(file.path, headers: true) do |row| #受け取ったCSVファイルを行ごとに取り出す、その時1行目headerには項目が書いてあるので、1行目は無視する
-          user = User.find(row.to_hash.slice("user_id")["user_id"])
-          electronic = user.electronics.new
-          electronic.attributes = row.to_hash.slice(*csv_attributes) #electronicの属性に順番にデータを格納していく。詳しくは調べてください
-          electronic.user_id = user.user_name
+    def self.import(hash)
+          electronic electronics.new
+          electronic.attributes = row.to_hash.slice(*csv_attributes2) #electronicの属性に順番にデータを格納していく。詳しくは調べてください
+          
           electronic.id = rand(99999999)
           puts electronic.inspect
-          electronic.save!
-        end
+          electronic.save(validate: false)
       end
 
 end

@@ -45,7 +45,7 @@ RailsAdmin.config do |config|
       field :electronics_name
       field :mac_address
       field :is_wireless
-      field :user do
+      field :owner_name do
         pretty_value do value.try(:user_name) end
       end
     end
@@ -53,7 +53,7 @@ RailsAdmin.config do |config|
       field :electronics_name
       field :mac_address
       field :is_wireless
-      field :user do
+      field :owner_name do
         pretty_value do value.try(:user_name) end
       end
     end

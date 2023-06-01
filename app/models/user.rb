@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     self.primary_key = :user_name
-    has_many :electronics
+    has_many :electronics, foreign_key: :owner_name
 
     validates :user_name, presence: true
 

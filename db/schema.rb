@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 2023_05_20_123043) do
     t.string "electronics_name", null: false
     t.string "mac_address", null: false
     t.boolean "is_wireless", null: false
-    t.string "user_id"
+    t.string "owner_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_electronics_on_user_id"
+    t.index ["owner_name"], name: "index_electronics_on_owner_name"
   end
 
   create_table "users", primary_key: "user_name", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -31,5 +31,5 @@ ActiveRecord::Schema.define(version: 2023_05_20_123043) do
     t.boolean "pre_payment", default: false
   end
 
-  add_foreign_key "electronics", "users", primary_key: "user_name"
+  add_foreign_key "electronics", "users", column: "owner_name", primary_key: "user_name"
 end
