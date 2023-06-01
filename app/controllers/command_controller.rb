@@ -3,6 +3,14 @@ class CommandController < ApplicationController
     @output = generate_command()
   end
 
+  def output_user
+    respond_to do |format| #この意味はURLのformatによって、新たに変更を加えるよという意味
+      format.html #format.htmlの場合は、つまりURLが/usersの時はという意味。format.htmlの後に処理が書かれていないため何もせず画面遷移する
+      format.csv { send_data @users.generate_csv, filename: "users-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
+    #format.csvの場合は、つまり/user.csvになっている場合はという意味。その場合は後述の処理をする。ここではsend dataをしているので、データをブラウザからダウンロードされるようにしている
+    end
+  end
+
 
 
 

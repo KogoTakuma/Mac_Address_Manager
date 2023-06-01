@@ -3,4 +3,8 @@
   <button class='my_clip_button' data-clipboard-target='fe_text' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button'>
     <b>コピーする</b>
   </button>
+
+  <%= link_to 'Userエクスポート', user_path(format: :csv), class: 'btn btn-primary mb-5'%>
+
+  <%= link_to 'Electronicエクスポート', electronic_path(format: :csv), class: 'btn btn-primary mb-5'%>
 </div>

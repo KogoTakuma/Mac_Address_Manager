@@ -1,4 +1,22 @@
 class Electronic < ApplicationRecord
-    belongs_to :user, primary_key: :user_name
-    validates :user_id, presence: true
+    belongs_to :electronic, primary_key: :electronic_name
+    validates :electronic_id, presence: true
+
+    def self.csv_attributes
+        ["electronics_name", "mac_address", "is_wireless", "user_id", "created_at", "updated_at"]
+    end
+    
+    #CSV形式でインスタンスの中身を出力できるようにする
+    def self.generate_csv
+        #ここでcsv形式の配列csvを定義する、csv形式の配列に代入していくと列ベクトルができる？
+        CSV.generate(headers: true) do |csv|
+          #まずこのcsvに上記で定義したcsv_attributesを1行目として代入
+          csv << csv_attributes
+          all.each do |electronic| #electronicを一つ一つ取り出して
+            #csvの次に行にelectronicの値を代入していく
+            csv << csv_attributes.map{ |attr| electronic.send(attr) }
+          end
+        end
+    end
+
 end
