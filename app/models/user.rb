@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
     #この関数ではcsv_attributesという配列変数を定義
   def self.csv_attributes
-    ["belongs", "user_name", "is_special", "is_payment", "pre_payment", "created_at", "updated_at"]
+    ["belongs", "user_name", "is_payment", "pre_payment", "is_special"]
   end
 
 #CSV形式でインスタンスの中身を出力できるようにする
@@ -19,6 +19,15 @@ class User < ApplicationRecord
         #csvの次に行にuserの値を代入していく
         csv << csv_attributes.map{ |attr| user.send(attr) }
       end
+    end
+  end
+
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row| #受け取ったCSVファイルを行ごとに取り出す、その時1行目headerには項目が書いてあるので、1行目は無視する
+      user = new #Task.newと同価
+      user.attributes = row.to_hash.slice(*csv_attributes) #userの属性に順番にデータを格納していく。詳しくは調べてください
+      user.save!
     end
   end
 end

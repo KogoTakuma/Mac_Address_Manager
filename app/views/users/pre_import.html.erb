@@ -1,0 +1,7 @@
+<h3>Userをインポートします。ヘッダー行ヘッダー列は読み込まれません。</h3>
+<h3>"belongs",user_name","is_payment","pre_payment","is_special"</h3>
+<%= form_tag user_import_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "インポート" %>
+  <% end %>
+  
