@@ -4,7 +4,7 @@ class Electronic < ApplicationRecord
     #validates :id, presence: true
 
     def self.csv_attributes
-        ["user_name","electronics_name", "mac_address", "is_wireless"]
+        ["owner_name","electronics_name", "mac_address", "is_wireless"]
     end
     def self.csv_attributes2
         ["electronics_name", "mac_address", "is_wireless"]

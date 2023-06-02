@@ -45,8 +45,10 @@ RailsAdmin.config do |config|
       field :electronics_name
       field :mac_address
       field :is_wireless
-      field :owner_name do
-        pretty_value do value.try(:user_name) end
+      field :owner_name, :enum do
+        enum do
+          User.all.collect {|a| [a.user_name]}
+        end
       end
     end
     show do
@@ -66,16 +68,17 @@ RailsAdmin.config do |config|
   end
 
   config.model 'User' do
-
-    import do 
-      include_all_fields
-    end
-    #show do
-    #  field :belongs
-    #  field :user_name
-    #  field :is_special
-    #  field :is_payment
-    #end
+#
+#    import do 
+#      include_all_fields
+#    end
+#    show do
+#      field :belongs
+#      field :user_name
+#      field :is_special
+#      field :is_payment
+#      field :electronics
+#    end
 #
     #edit do
     #  field :belongs
@@ -85,12 +88,12 @@ RailsAdmin.config do |config|
     #end
 
   
-    #index do
-    field :user_name
-    field :belongs
-    field :is_payment
-    field :is_special
-    field :pre_payment
+  #  #index do
+  #  field :user_name
+  #  field :belongs
+  #  field :is_payment
+  #  field :is_special
+  #  field :pre_payment
     #end    
 
   end
