@@ -22,13 +22,6 @@ class Electronic < ApplicationRecord
           end
         end
     end
-    def self.import(hash)
-          electronic electronics.new
-          electronic.attributes = row.to_hash.slice(*csv_attributes2) #electronicの属性に順番にデータを格納していく。詳しくは調べてください
-          
-          electronic.id = rand(99999999)
-          puts electronic.inspect
-          electronic.save(validate: false)
-      end
+
 
 end

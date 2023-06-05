@@ -1,5 +1,5 @@
 <h3>Electronicsをインポートします。ヘッダー行ヘッダー列は読み込まれません。</h3>
-<h3>["electronics_name", "mac_address", "is_wireless", "user_id"]</h3>
+<h3>["electronics_name", "mac_address", "is_wireless", "user_name"]</h3>
 <%= form_tag electronic_import_path, multipart: true do %>
     <%= file_field_tag :file %>
     <%= submit_tag "インポート" %>

@@ -7,10 +7,16 @@ class ElectronicsController < ApplicationController
 
   def import 
     CSV.foreach(params[:file].path, headers: true) do |row| #受け取ったCSVファイルを行ごとに取り出す、その時1行目headerには項目が書いてあるので、1行目は無視する
-      user = User.find(row.to_hash.slice("user_name")["user_name"])
+      user = User.find(row.to_hash.slice("owner_name")["owner_name"])
       electronic = user.electronics.new
       electronic.attributes = row.to_hash.slice(*["electronics_name", "mac_address", "is_wireless"])
-      electronic.save!
+
+      begin
+        electronic.save
+      rescue ActiveRecord::RecordNotUnique => e
+        puts "duplicated"
+        puts electronic.inspect
+      end
     end
     redirect_to rails_admin_path, notice: "タスクを追加しました"
   end

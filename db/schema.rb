@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_20_123043) do
+ActiveRecord::Schema.define(version: 2023_06_02_105706) do
 
   create_table "electronics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "electronics_name", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2023_05_20_123043) do
     t.string "owner_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["mac_address"], name: "index_electronics_on_mac_address", unique: true
     t.index ["owner_name"], name: "index_electronics_on_owner_name"
   end
 

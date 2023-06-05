@@ -27,7 +27,12 @@ class User < ApplicationRecord
     CSV.foreach(file.path, headers: true) do |row| #受け取ったCSVファイルを行ごとに取り出す、その時1行目headerには項目が書いてあるので、1行目は無視する
       user = new #Task.newと同価
       user.attributes = row.to_hash.slice(*csv_attributes) #userの属性に順番にデータを格納していく。詳しくは調べてください
-      user.save!
+      begin
+        user.save
+      rescue ActiveRecord::RecordNotUnique => e
+        puts "duplicated"
+        puts user.inspect
+      end
     end
   end
 end
