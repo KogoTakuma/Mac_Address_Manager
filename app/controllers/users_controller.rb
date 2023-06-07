@@ -9,9 +9,7 @@ class UsersController < ApplicationController
     def import 
         @user  = User.all
         @user.import(params[:file])  #現在のuserのtaskにimportを発動させる
-        redirect_to rails_admin_path, notice: "タスクを追加しました"
-    end
-    def pre_import 
+        redirect_to rails_admin_path, notice: "ユーザーを追加しました"
     end
     
 end

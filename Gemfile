@@ -68,3 +68,5 @@ gem "rails_admin_import", "~> 2.2"
 gem 'roo'
 
 gem 'zeroclipboard-rails'
+
+gem 'import'
