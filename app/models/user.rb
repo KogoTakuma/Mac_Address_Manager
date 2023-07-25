@@ -30,7 +30,7 @@ class User < ApplicationRecord
       begin
         user.save
       rescue ActiveRecord::RecordNotUnique => e
-        target_user = User.find(user.name)
+        target_user = User.find(user.user_name)
         target_user.pre_payment = user.pre_payment
         target_user.is_payment = user.is_payment
         target_user.is_special = user.is_special
